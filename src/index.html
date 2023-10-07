@@ -78,17 +78,59 @@
 <body>
     <div class="container">
         <h1>Subscribe to Email Waitlist</h1>
-        <p>Get Notified when the app make it to the App Store.</p>
+        <p>Get Notified when the app makes it to the App Store.</p>
         
-        <form action="submit_email.php" method="POST">
+        <form id="subscribe-form">
             <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                <!-- The pattern attribute uses a regex to validate the email address -->
+                <input type="email" id="email-input" name="email" placeholder="Email" required>
+                <!-- Remove the pattern attribute from here -->
             </div>
             <div>
-                <button type="submit" class="btn-subscribe">Subscribe</button>
+                <button type="button" id="subscribe-button" class="btn-subscribe">Subscribe</button>
             </div>
         </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('subscribe-form');
+            const emailInput = document.getElementById('email-input');
+
+            const subscribeButton = document.getElementById('subscribe-button');
+            subscribeButton.addEventListener('click', async function() {
+                const email = emailInput.value;
+
+                // Check if the email matches the regex pattern
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                console.log(`Email enter: "${email}"`)
+
+                try {
+                    const response = await fetch('http://localhost:7071/api/LandingPageAppFunction', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                        body: email
+                    });
+
+                    console.log(response)
+
+                    if (response.ok) {
+                        alert("Subscription success.");
+                    } else {
+                        alert(`Subscription failed. Please try again later.`);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(error);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
