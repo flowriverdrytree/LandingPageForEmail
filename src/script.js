@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Hide the "container" div and show the "transient" message
-        document.getElementById('containerDiv').style.display = 'none';
+        document.getElementById('formDiv').style.display = 'none';
         document.getElementById('transientDiv').style.display = 'block';
 
         getByEmail(email, (isEmailFound) => {
