@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="containerDiv">
         <h1>Subscribe to Email Waitlist</h1>
         <p>Get notified when the app makes it to the App Store.</p>
         
@@ -19,6 +19,13 @@
                 <button type="button" id="subscribe-button" class="btn-subscribe">Subscribe</button>
             </div>
         </form>
+    </div>
+
+    <!-- Hidden transient message to be show when processing subscritpion request -->
+    <div class="container" id="transientDiv" style="display: none;">
+        <div class="transientIcon">⏳</div> <!-- Checkmark icon -->
+        <h1>Subscribing ...</h1>
+        <p>Please wait for a couple seconds</p>
     </div>
     <script src="script.js"></script>
 </body>

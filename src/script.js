@@ -1,3 +1,8 @@
+let endpoint = "https://yellow-mushroom-0877ef01e.3.azurestaticapps.net/data-api/graphql";
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    endpoint = "http://localhost:4280/data-api/graphql";
+}
+
 // Add an event listener to the subscribe button
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("subscribe-button").addEventListener("click", function () {
@@ -14,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please enter a valid email address.');
             return;
         }
+        
+        // Hide the "container" div and show the "transient" message
+        document.getElementById('containerDiv').style.display = 'none';
+        document.getElementById('transientDiv').style.display = 'block';
 
         getByEmail(email, (isEmailFound) => {
             if (isEmailFound) {
@@ -52,7 +61,6 @@ async function subscribe(id, completion) {
         } 
     };
       
-    const endpoint = "https://yellow-mushroom-0877ef01e.3.azurestaticapps.net/data-api/graphql";
     const result = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -83,8 +91,7 @@ async function getByEmail(id, completion) {
         id: id,
       },
     };
-  
-    const endpoint = "https://yellow-mushroom-0877ef01e.3.azurestaticapps.net/data-api/graphql";
+
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -111,8 +118,6 @@ async function getAllEmail() {
         }
     }`;
 
-    // TEST: replace localhost with https://yellow-mushroom-0877ef01e.3.azurestaticapps.net for production testing
-    const endpoint = "http://localhost:4280/data-api/graphql";
     const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

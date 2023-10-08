@@ -70,10 +70,16 @@ input[type="email"] {
 .checkmark {
   color: #4CAF50; /* Green color */
   font-size: 48px; /* Adjust the size as needed */
-  margin-bottom: 20px;
+  vertical-align: middle; /* Vertically align the icon to the middle of the text */
 }
 
 .crossmark {
+  font-size: 48px; /* Adjust the size as needed */
+  vertical-align: middle; /* Vertically align the icon to the middle of the text */
+  color: #FF0000; /* Red color */
+}
+
+.transientIcon {
   font-size: 48px; /* Adjust the size as needed */
   vertical-align: middle; /* Vertically align the icon to the middle of the text */
   color: #FF0000; /* Red color */
