@@ -1,0 +1,44 @@
+{
+  "$schema": "https://github.com/Azure/data-api-builder/releases/download/v0.8.52/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "cosmosdb_nosql",
+    "connection-string": "@env('DATABASE_CONNECTION_STRING')",
+    "options": {
+      "database": "MyTestPersonDatabase",
+      "container": "MyTestPersonContainer",
+      "schema": "staticwebapp.database.schema.gql"
+    }
+  },
+  "runtime": {
+    "rest": {
+      "enabled": false,
+      "path": "/api"
+    },
+    "graphql": {
+      "enabled": true,
+      "path": "/graphql",
+      "allow-introspection": true
+    },
+    "host": {
+      "cors": {
+        "origins": ["http://localhost:4280"],
+        "allow-credentials": false
+      },
+      "authentication": {
+        "provider": "StaticWebApps"
+      },
+      "mode": "production"
+    }
+  },
+  "entities": {
+    "Person": {
+      "source": "MyTestPersonContainer",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
+    }
+  }
+}
