@@ -8,6 +8,6 @@ Run `swa start src --api-location api --data-api-location swa-db-connections` at
 - [Azure Static Web App Documentation](https://learn.microsoft.com/en-us/azure/static-web-apps/database-overview)
 - [Connect CosmosDB to Static Web App](https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-cosmos-db?tabs=bash)
 
-
-http://localhost:7071/data-api/graphql
-http://localhost:4280/data-api/graphql
+## Glossary
+- `http://localhost:4280/` serve the static web app
+- `http://localhost:7071/` serve the Azure Function endpoint
