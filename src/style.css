@@ -72,3 +72,9 @@ input[type="email"] {
   font-size: 48px; /* Adjust the size as needed */
   margin-bottom: 20px;
 }
+
+.crossmark {
+  font-size: 48px; /* Adjust the size as needed */
+  vertical-align: middle; /* Vertically align the icon to the middle of the text */
+  color: #FF0000; /* Red color */
+}
