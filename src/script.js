@@ -1,33 +1,49 @@
 // Add an event listener to the subscribe button
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("subscribe-button").addEventListener("click", function () {
-        const email = "efg@dummyTestAppNonExistZhi.com"
-        // getByEmail(email)
-        listEmail();
+
+        const form = document.getElementById('subscribe-form');
+        const emailInput = document.getElementById('email-input');
+        const email = emailInput.value;
+        console.log(`Email enter: "${email}"`)
+
+        // Check if the email matches the regex pattern
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            console.log(`"Invalid Email: ${email}"`)
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // getByEmail2(email)
+
+        getByEmail(email, (isEmailFound) => {
+            if (isEmailFound) {
+                console.log(`Email already subscribed: "${email}"`)
+                window.location.href = "duplicate.html"; 
+            } else {
+                console.log("Write to cosmosDB")
+                window.location.href = "success.html"; 
+            }
+        });
+        
+        // const email = "efg@YOOYOY.com";
+        // getAllEmail()
         // callAzureFunction();
     });
 });
 
-async function getByEmail(email) {
-    const gql2 = `query GetPersonByEmail($email: String!) {
-        people(where: { Email: $email }) {
-            items {
-                Email
-            }
+async function getByEmail(id, completion) {  
+    const gql = `query getById($id: ID!) {
+        person_by_pk(id: $id) {
+           id 
         }
     }`;
-
-    const gql = `
-        query getByEmail($email: String!) {
-            person_by_email(email: $email) {
-                Email
-            }
-        }`;
-  
+      
     const query = {
-      query: gql2,
+      query: gql,
       variables: {
-        email: email,
+        id: id,
       },
     };
   
@@ -39,20 +55,21 @@ async function getByEmail(email) {
     });
     
     const result = await response.json();
-    
-    if (result.data && result.data.person_by_email) {
-        console.log(result.data.person_by_email);
+    const emailFetched = result.data.person_by_pk;
+    if (emailFetched) {
+        console.log(`Email Found: ${emailFetched.id}`);
+        completion(true)
     } else {
-        console.log(`No data found for email: ${email}`);
+        console.log("Email not found");
+        completion(false)
     }
 }
 
-async function listEmail() {
-    const query = `
-    {
+async function getAllEmail() {
+    const query = `{
         people {
             items {
-                Email
+                id
             }
         }
     }`;

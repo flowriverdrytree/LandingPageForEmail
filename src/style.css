@@ -66,3 +66,9 @@ input[type="email"] {
 .btn-subscribe:hover {
   background-color: #1976D2;
 }
+
+.checkmark {
+  color: #4CAF50; /* Green color */
+  font-size: 48px; /* Adjust the size as needed */
+  margin-bottom: 20px;
+}
