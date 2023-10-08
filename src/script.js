@@ -52,7 +52,7 @@ async function subscribe(id, completion) {
         } 
     };
       
-    const endpoint = "http://localhost:4280/data-api/graphql";
+    const endpoint = "https://yellow-mushroom-0877ef01e.3.azurestaticapps.net/data-api/graphql";
     const result = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -84,7 +84,7 @@ async function getByEmail(id, completion) {
       },
     };
   
-    const endpoint = "http://localhost:4280/data-api/graphql";
+    const endpoint = "https://yellow-mushroom-0877ef01e.3.azurestaticapps.net/data-api/graphql";
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -111,7 +111,7 @@ async function getAllEmail() {
         }
     }`;
 
-    // TEST: replace localhost4280 (serving)with https://yellow-mushroom-0877ef01e.3.azurestaticapps.net for production testing
+    // TEST: replace localhost with https://yellow-mushroom-0877ef01e.3.azurestaticapps.net for production testing
     const endpoint = "http://localhost:4280/data-api/graphql";
     const response = await fetch(endpoint, {
         method: "POST",

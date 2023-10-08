@@ -21,7 +21,7 @@
     },
     "host": {
       "cors": {
-        "origins": ["http://localhost:4280"],
+        "origins": ["https://yellow-mushroom-0877ef01e.3.azurestaticapps.net"],
         "allow-credentials": false
       },
       "authentication": {
