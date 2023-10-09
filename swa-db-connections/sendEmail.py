@@ -30,8 +30,6 @@ def main(args):
     for item in query_result:
         emailList.append(item['id'])
 
-    # print(f"emails collecte: {emailList}")
-
     # Send Marketing Emails!
     send_greeting_email(emailList)
 
